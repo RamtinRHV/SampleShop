@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form addfieldprefix="Maple\Component\Sampleshop\Administrator\Field">
+    <fieldset name="details" label="COM_SAMPLESHOP_CATEGORY_DETAILS">
+        <field 
+            name="id"
+            type="hidden"
+        />
+        <field
+            name="name"
+            type="text"
+            label="COM_SAMPLESHOP_CATEGORY_NAME_LABEL"
+            description="COM_SAMPLESHOP_CATEGORY_NAME_DESC"
+            class="input-xxlarge"
+            size="40"
+            required="true"
+        />
+        <field
+            name="alias"
+            type="text"
+            label="JFIELD_ALIAS_LABEL"
+            description="JFIELD_ALIAS_DESC"
+            hint="JFIELD_ALIAS_PLACEHOLDER"
+            size="40"
+        />
+        <field
+            name="parent_id"
+            type="sql"
+            label="COM_SAMPLESHOP_CATEGORY_PARENT_LABEL"
+            description="COM_SAMPLESHOP_CATEGORY_PARENT_DESC"
+            query="SELECT id AS value, name AS text FROM #__sampleshop_categories WHERE published = 1 ORDER BY name ASC"
+            key_field="value"
+            value_field="text"
+        >
+            <option value="0">COM_SAMPLESHOP_NO_PARENT</option>
+        </field>
+        <field
+            name="description"
+            type="editor"
+            label="COM_SAMPLESHOP_CATEGORY_DESCRIPTION_LABEL"
+            description="COM_SAMPLESHOP_CATEGORY_DESCRIPTION_DESC"
+            filter="JComponentHelper::filterText"
+            buttons="true"
+        />
+        <field
+            name="image"
+            type="media"
+            label="COM_SAMPLESHOP_CATEGORY_IMAGE_LABEL"
+            description="COM_SAMPLESHOP_CATEGORY_IMAGE_DESC"
+        />
+        <field
+            name="published"
+            type="list"
+            label="JSTATUS"
+            description="JFIELD_PUBLISHED_DESC"
+            default="1"
+            class="form-select-color-state"
+        >
+            <option value="1">JPUBLISHED</option>
+            <option value="0">JUNPUBLISHED</option>
+        </field>
+        <field
+            name="ordering"
+            type="ordering"
+            label="JFIELD_ORDERING_LABEL"
+            description="JFIELD_ORDERING_DESC"
+            content_type="com_sampleshop.category"
+        />
+    </fieldset>
+</form>

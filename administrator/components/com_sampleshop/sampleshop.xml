@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" method="upgrade">
+    <name>COM_SAMPLESHOP</name>
+    <creationDate>March 16, 2025</creationDate>
+    <author>Ramtin</author>
+    <copyright>(C) 2025 Ramtin</copyright>
+    <license>GNU General Public License version 2 or later;</license>
+    <version>1.0.0</version>
+    <description>COM_SAMPLESHOP_XML_DESCRIPTION</description>
+    <namespace path="src">Maple\Component\Sampleshop</namespace>
+
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install/mysql/install.mysql.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install/mysql/uninstall.mysql.sql</file>
+        </sql>
+    </uninstall>
+    <update>
+        <schemas>
+            <schemapath type="mysql">sql/updates/mysql</schemapath>
+        </schemas>
+    </update>
+
+    <files folder="components/com_sampleshop">
+        <folder>src</folder>
+        <folder>tmpl</folder>
+        <folder>language</folder>
+    </files>
+
+    <administration>
+        <menu>COM_SAMPLESHOP</menu>
+        <submenu>
+            <menu link="option=com_sampleshop&amp;view=products">COM_SAMPLESHOP_PRODUCTS</menu>
+            <menu link="option=com_sampleshop&amp;view=categories">COM_SAMPLESHOP_CATEGORIES</menu>
+        </submenu>
+        <files folder="administrator/components/com_sampleshop">
+            <filename>access.xml</filename>
+            <folder>forms</folder>
+            <folder>services</folder>
+            <folder>sql</folder>
+            <folder>src</folder>
+            <folder>tmpl</folder>
+            <folder>language</folder>
+        </files>
+    </administration>
+</extension>
