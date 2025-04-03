@@ -1,50 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" method="upgrade">
-    <name>COM_SAMPLESHOP</name>
-    <creationDate>March 16, 2025</creationDate>
+    <name>com_sampleshop</name>
     <author>Ramtin</author>
-    <copyright>(C) 2025 Ramtin</copyright>
+    <creationDate>March 2025</creationDate>
+    <copyright>(C) 2025 Ramtin. All rights reserved.</copyright>
     <license>GNU General Public License version 2 or later;</license>
     <version>1.0.0</version>
     <description>COM_SAMPLESHOP_XML_DESCRIPTION</description>
+
     <namespace path="src">Maple\Component\Sampleshop</namespace>
-
-    <install>
-        <sql>
-            <file driver="mysql" charset="utf8">sql/install/mysql/install.mysql.sql</file>
-        </sql>
-    </install>
-    <uninstall>
-        <sql>
-            <file driver="mysql" charset="utf8">sql/install/mysql/uninstall.mysql.sql</file>
-        </sql>
-    </uninstall>
-    <update>
-        <schemas>
-            <schemapath type="mysql">sql/updates/mysql</schemapath>
-        </schemas>
-    </update>
-
-    <files folder="components/com_sampleshop">
-        <folder>src</folder>
-        <folder>tmpl</folder>
-        <folder>language</folder>
-    </files>
 
     <administration>
         <menu>COM_SAMPLESHOP</menu>
         <submenu>
-            <menu link="option=com_sampleshop&amp;view=products">COM_SAMPLESHOP_PRODUCTS</menu>
             <menu link="option=com_sampleshop&amp;view=categories">COM_SAMPLESHOP_CATEGORIES</menu>
+            <menu link="option=com_sampleshop&amp;view=products">COM_SAMPLESHOP_PRODUCTS</menu>
         </submenu>
-        <files folder="administrator/components/com_sampleshop">
-            <filename>access.xml</filename>
+        
+        <files folder="administrator">
             <folder>forms</folder>
+            <folder>language</folder>
             <folder>services</folder>
             <folder>sql</folder>
             <folder>src</folder>
             <folder>tmpl</folder>
-            <folder>language</folder>
+            <filename>access.xml</filename>
+            <filename>config.xml</filename>
         </files>
     </administration>
+
+    <install>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install/install.mysql.sql</file>
+        </sql>
+    </install>
+    <uninstall>
+        <sql>
+            <file driver="mysql" charset="utf8">sql/install/uninstall.mysql.sql</file>
+        </sql>
+    </uninstall>
 </extension>
