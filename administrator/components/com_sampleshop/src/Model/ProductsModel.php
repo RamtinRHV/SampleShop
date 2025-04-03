@@ -89,60 +89,75 @@ class ProductsModel extends ListModel
      */
     protected function getListQuery()
     {
-        // Create a new query object.
-        $db = $this->getDatabase();
+        $db = $this->getDbo();
         $query = $db->getQuery(true);
-
-        // Select the required fields from the table.
+        
+        // Select required fields
         $query->select(
-            $this->getState(
-                'list.select',
-                'a.id, a.name, a.alias, a.catid, a.price, a.featured, ' .
-                'a.published, a.created, a.created_by, a.ordering'
+            $db->quoteName(
+                [
+                    'a.id',
+                    'a.name',
+                    'a.alias',
+                    'a.price',
+                    'a.description',
+                    'a.category_id',
+                    'a.published',
+                    'a.ordering',
+                    'a.created',
+                    'a.created_by',
+                    'a.hits',
+                    'c.name',
+                ],
+                [
+                    'id',
+                    'name',
+                    'alias',
+                    'price',
+                    'description',
+                    'category_id',
+                    'published',
+                    'ordering',
+                    'created',
+                    'created_by',
+                    'hits',
+                    'category_name'
+                ]
             )
         );
-        $query->from($db->quoteName('#__sampleshop_products', 'a'));
 
-        // Join over the categories.
-        $query->select($db->quoteName('c.name', 'category_title'))
-            ->join(
-                'LEFT',
-                $db->quoteName('#__sampleshop_categories', 'c') . ' ON c.id = a.catid'
-            );
+        $query->from($db->quoteName('#__sampleshop_products', 'a'))
+            ->join('LEFT', $db->quoteName('#__sampleshop_categories', 'c'), 
+                $db->quoteName('c.id') . ' = ' . $db->quoteName('a.category_id'));
 
-        // Filter by published state
-        $published = $this->getState('filter.published');
-        if (is_numeric($published))
-        {
-            $query->where($db->quoteName('a.published') . ' = :published')
-                ->bind(':published', $published, ParameterType::INTEGER);
-        }
-        elseif ($published === '')
-        {
-            $query->where($db->quoteName('a.published') . ' IN (0, 1)');
-        }
-
-        // Filter by category.
-        $categoryId = $this->getState('filter.category_id');
-        if (is_numeric($categoryId))
-        {
-            $query->where($db->quoteName('a.catid') . ' = :categoryId')
-                ->bind(':categoryId', $categoryId, ParameterType::INTEGER);
-        }
-
-        // Filter by search in title.
+        // Filter by search
         $search = $this->getState('filter.search');
-        if (!empty($search))
-        {
-            $search = '%' . str_replace(' ', '%', $db->escape(trim($search), true) . '%');
-            $query->where($db->quoteName('a.name') . ' LIKE :search')
-                ->bind(':search', $search, ParameterType::STRING);
+        if (!empty($search)) {
+            $search = $db->quote('%' . str_replace(' ', '%', $db->escape(trim($search), true) . '%'));
+            $query->where('(a.name LIKE ' . $search . ' OR a.description LIKE ' . $search . ')');
         }
 
-        // Add the list ordering clause.
+        // Filter by category
+        $categoryId = $this->getState('filter.category_id');
+        if (is_numeric($categoryId)) {
+            $query->where($db->quoteName('a.category_id') . ' = ' . (int) $categoryId);
+        }
+
+        // Filter by price range
+        $priceFrom = $this->getState('filter.price_from');
+        $priceTo = $this->getState('filter.price_to');
+        
+        if (is_numeric($priceFrom)) {
+            $query->where($db->quoteName('a.price') . ' >= ' . (float) $priceFrom);
+        }
+        if (is_numeric($priceTo)) {
+            $query->where($db->quoteName('a.price') . ' <= ' . (float) $priceTo);
+        }
+
+        // Add the list ordering clause
         $orderCol = $this->state->get('list.ordering', 'a.name');
         $orderDirn = $this->state->get('list.direction', 'ASC');
-
+        
         $query->order($db->escape($orderCol . ' ' . $orderDirn));
 
         return $query;

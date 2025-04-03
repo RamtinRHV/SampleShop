@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+    <fields name="filter">
+        <field
+            name="search"
+            type="text"
+            label="COM_SAMPLESHOP_FILTER_SEARCH_LABEL"
+            description="COM_SAMPLESHOP_FILTER_SEARCH_DESC"
+            hint="JSEARCH_FILTER"
+        />
+
+        <field
+            name="category_id"
+            type="category"
+            label="COM_SAMPLESHOP_FILTER_CATEGORY"
+            extension="com_sampleshop"
+            onchange="this.form.submit();"
+        >
+            <option value="">COM_SAMPLESHOP_SELECT_CATEGORY</option>
+        </field>
+
+        <field
+            name="price_from"
+            type="number"
+            label="COM_SAMPLESHOP_FILTER_PRICE_FROM"
+            onchange="this.form.submit();"
+            min="0"
+            step="0.01"
+        />
+
+        <field
+            name="price_to"
+            type="number"
+            label="COM_SAMPLESHOP_FILTER_PRICE_TO"
+            onchange="this.form.submit();"
+            min="0"
+            step="0.01"
+        />
+
+        <field
+            name="published"
+            type="status"
+            label="JOPTION_SELECT_PUBLISHED"
+            onchange="this.form.submit();"
+        >
+            <option value="">JOPTION_SELECT_PUBLISHED</option>
+        </field>
+    </fields>
+
+    <fields name="list">
+        <field
+            name="fullordering"
+            type="list"
+            label="JGLOBAL_SORT_BY"
+            default="a.name ASC"
+            onchange="this.form.submit();"
+        >
+            <option value="">JGLOBAL_SORT_BY</option>
+            <option value="a.name ASC">COM_SAMPLESHOP_SORT_BY_NAME_ASC</option>
+            <option value="a.name DESC">COM_SAMPLESHOP_SORT_BY_NAME_DESC</option>
+            <option value="a.price ASC">COM_SAMPLESHOP_SORT_BY_PRICE_ASC</option>
+            <option value="a.price DESC">COM_SAMPLESHOP_SORT_BY_PRICE_DESC</option>
+            <option value="a.hits DESC">COM_SAMPLESHOP_SORT_BY_POPULARITY</option>
+            <option value="a.created DESC">COM_SAMPLESHOP_SORT_BY_NEWEST</option>
+        </field>
+
+        <field
+            name="limit"
+            type="limitbox"
+            label="JGLOBAL_LIST_LIMIT"
+            default="25"
+            onchange="this.form.submit();"
+        />
+    </fields>
+</form> 

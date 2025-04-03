@@ -8,13 +8,13 @@ namespace Maple\Component\Sampleshop\Administrator\Controller;
 
 defined('_JEXEC') or die;
 
-use Joomla\CMS\MVC\Controller\AdminController;
+use Joomla\CMS\MVC\Controller\FormController;
 use Joomla\CMS\Factory;
 
 /**
- * Product Controller
+ * Category Controller
  */
-class ProductController extends AdminController
+class CategoryController extends FormController
 {
     /**
      * Method to check if you can add a new record.
@@ -41,22 +41,20 @@ class ProductController extends AdminController
         $recordId = (int) isset($data[$key]) ? $data[$key] : 0;
         $user = Factory::getApplication()->getIdentity();
 
-        // Zero record (id:0), return component edit permission by calling parent controller method
         if (!$recordId)
         {
             return parent::allowEdit($data, $key);
         }
 
-        // Check edit on the record asset (explicit or inherited)
-        if ($user->authorise('core.edit', 'com_sampleshop.product.' . $recordId))
+        // Check edit on the record asset
+        if ($user->authorise('core.edit', 'com_sampleshop.category.' . $recordId))
         {
             return true;
         }
 
-        // Check edit own on the record asset (explicit or inherited)
-        if ($user->authorise('core.edit.own', 'com_sampleshop.product.' . $recordId))
+        // Check edit own on the record asset
+        if ($user->authorise('core.edit.own', 'com_sampleshop.category.' . $recordId))
         {
-            // Existing record already has an owner, get it
             $record = $this->getModel()->getItem($recordId);
 
             if (empty($record))
@@ -64,10 +62,9 @@ class ProductController extends AdminController
                 return false;
             }
 
-            // Grant if current user is owner of the record
             return $user->id == $record->created_by;
         }
 
         return false;
     }
-}
+} 

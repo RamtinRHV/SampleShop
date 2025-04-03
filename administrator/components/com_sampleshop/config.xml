@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+    <fieldset 
+        name="component"
+        label="COM_SAMPLESHOP_CONFIG_COMPONENT_SETTINGS_LABEL"
+        description="COM_SAMPLESHOP_CONFIG_COMPONENT_SETTINGS_DESC"
+    >
+        <field
+            name="show_category_title"
+            type="radio"
+            label="COM_SAMPLESHOP_CONFIG_SHOW_CATEGORY_TITLE_LABEL"
+            description="COM_SAMPLESHOP_CONFIG_SHOW_CATEGORY_TITLE_DESC"
+            default="1"
+            layout="joomla.form.field.radio.switcher"
+        >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field
+            name="show_category_description"
+            type="radio"
+            label="COM_SAMPLESHOP_CONFIG_SHOW_CATEGORY_DESC_LABEL"
+            description="COM_SAMPLESHOP_CONFIG_SHOW_CATEGORY_DESC_DESC"
+            default="1"
+            layout="joomla.form.field.radio.switcher"
+        >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field
+            name="currency_symbol"
+            type="text"
+            label="COM_SAMPLESHOP_CONFIG_CURRENCY_SYMBOL_LABEL"
+            description="COM_SAMPLESHOP_CONFIG_CURRENCY_SYMBOL_DESC"
+            default="$"
+        />
+
+        <field
+            name="price_format"
+            type="list"
+            label="COM_SAMPLESHOP_CONFIG_PRICE_FORMAT_LABEL"
+            description="COM_SAMPLESHOP_CONFIG_PRICE_FORMAT_DESC"
+            default="1"
+        >
+            <option value="1">1,234.56</option>
+            <option value="2">1.234,56</option>
+            <option value="3">1 234.56</option>
+        </field>
+
+        <field
+            name="products_per_page"
+            type="number"
+            label="COM_SAMPLESHOP_CONFIG_PRODUCTS_PER_PAGE_LABEL"
+            description="COM_SAMPLESHOP_CONFIG_PRODUCTS_PER_PAGE_DESC"
+            default="12"
+            min="1"
+            max="100"
+        />
+
+        <field
+            name="show_product_description"
+            type="radio"
+            label="COM_SAMPLESHOP_CONFIG_SHOW_PRODUCT_DESC_LABEL"
+            description="COM_SAMPLESHOP_CONFIG_SHOW_PRODUCT_DESC_DESC"
+            default="1"
+            layout="joomla.form.field.radio.switcher"
+        >
+            <option value="0">JNO</option>
+            <option value="1">JYES</option>
+        </field>
+
+        <field
+            name="image_thumb_width"
+            type="number"
+            label="COM_SAMPLESHOP_CONFIG_IMAGE_THUMB_WIDTH_LABEL"
+            description="COM_SAMPLESHOP_CONFIG_IMAGE_THUMB_WIDTH_DESC"
+            default="200"
+            min="50"
+            max="800"
+        />
+
+        <field
+            name="image_thumb_height"
+            type="number"
+            label="COM_SAMPLESHOP_CONFIG_IMAGE_THUMB_HEIGHT_LABEL"
+            description="COM_SAMPLESHOP_CONFIG_IMAGE_THUMB_HEIGHT_DESC"
+            default="200"
+            min="50"
+            max="800"
+        />
+    </fieldset>
+
+    <fieldset
+        name="permissions"
+        label="JCONFIG_PERMISSIONS_LABEL"
+        description="JCONFIG_PERMISSIONS_DESC"
+    >
+        <field
+            name="rules"
+            type="rules"
+            label="JCONFIG_PERMISSIONS_LABEL"
+            validate="rules"
+            filter="rules"
+            component="com_sampleshop"
+            section="component"
+        />
+    </fieldset>
+</config> 
