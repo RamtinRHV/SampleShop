@@ -10,12 +10,15 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\MVC\Controller\FormController;
 use Joomla\CMS\Factory;
+use Joomla\CMS\Router\Route;
 
 /**
  * Category Controller
  */
 class CategoryController extends FormController
 {
+    protected $text_prefix = 'COM_SAMPLESHOP_CATEGORY';
+
     /**
      * Method to check if you can add a new record.
      *
@@ -66,5 +69,19 @@ class CategoryController extends FormController
         }
 
         return false;
+    }
+
+    public function getRedirectToItemAppend($recordId = null, $urlVar = 'id')
+    {
+        $append = parent::getRedirectToItemAppend($recordId, $urlVar);
+        
+        return $append;
+    }
+
+    protected function getRedirectToListAppend()
+    {
+        $append = parent::getRedirectToListAppend();
+        
+        return $append;
     }
 } 

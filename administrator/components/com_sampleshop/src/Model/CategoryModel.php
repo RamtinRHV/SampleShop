@@ -9,8 +9,12 @@ namespace Maple\Component\Sampleshop\Administrator\Model;
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
+use Joomla\CMS\Form\Form;
 use Joomla\CMS\MVC\Model\AdminModel;
 use Joomla\CMS\Table\Table;
+use Joomla\String\StringHelper;
+use Joomla\Database\ParameterType;
+use Joomla\CMS\Filter\OutputFilter as JFilterOutput;
 
 /**
  * Category Model
@@ -24,6 +28,8 @@ class CategoryModel extends AdminModel
      */
     public $typeAlias = 'com_sampleshop.category';
 
+    protected $text_prefix = 'COM_SAMPLESHOP';
+
     /**
      * Method to get a table object, load it if necessary.
      *
@@ -33,7 +39,7 @@ class CategoryModel extends AdminModel
      *
      * @return  Table  A Table object
      */
-    public function getTable($type = 'Category', $prefix = 'Administrator', $config = [])
+    public function getTable($type = 'Category', $prefix = 'Maple\\Component\\Sampleshop\\Administrator\\Table', $config = array())
     {
         return parent::getTable($type, $prefix, $config);
     }
@@ -46,17 +52,10 @@ class CategoryModel extends AdminModel
      *
      * @return  Form|boolean  A Form object on success, false on failure
      */
-    public function getForm($data = [], $loadData = true)
+    public function getForm($data = array(), $loadData = true)
     {
         // Get the form.
-        $form = $this->loadForm(
-            'com_sampleshop.category',
-            'category',
-            [
-                'control' => 'jform',
-                'load_data' => $loadData
-            ]
-        );
+        $form = $this->loadForm('com_sampleshop.category', 'category', array('control' => 'jform', 'load_data' => $loadData));
 
         if (empty($form))
         {
@@ -74,8 +73,7 @@ class CategoryModel extends AdminModel
     protected function loadFormData()
     {
         // Check the session for previously entered form data.
-        $app = Factory::getApplication();
-        $data = $app->getUserState('com_sampleshop.edit.category.data', []);
+        $data = Factory::getApplication()->getUserState('com_sampleshop.edit.category.data', array());
 
         if (empty($data))
         {
@@ -209,5 +207,45 @@ class CategoryModel extends AdminModel
         }
 
         return true;
+    }
+
+    protected function prepareTable($table)
+    {
+        $date = Factory::getDate();
+        $user = Factory::getApplication()->getIdentity();
+
+        $table->name = htmlspecialchars_decode($table->name, ENT_QUOTES);
+        $table->alias = $table->alias ?: StringHelper::increment($this->generateAlias($table->name), 'dash');
+
+        if (empty($table->id))
+        {
+            // Set the values
+            $table->created = $date->toSql();
+            $table->created_by = $user->id;
+
+            // Set ordering to the last item if not set
+            if (empty($table->ordering))
+            {
+                $db = $this->getDbo();
+                $query = $db->getQuery(true)
+                    ->select('MAX(ordering)')
+                    ->from($db->quoteName('#__sampleshop_categories'));
+                $db->setQuery($query);
+                $max = $db->loadResult();
+
+                $table->ordering = $max + 1;
+            }
+        }
+        else
+        {
+            // Set the values
+            $table->modified = $date->toSql();
+            $table->modified_by = $user->id;
+        }
+    }
+
+    protected function generateAlias($name)
+    {
+        return JFilterOutput::stringURLSafe($name);
     }
 }
