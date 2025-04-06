@@ -14,8 +14,9 @@ use Joomla\CMS\Router\Route;
 HTMLHelper::_('behavior.multiselect');
 HTMLHelper::_('formbehavior.chosen', 'select');
 
-$listOrder = $this->escape($this->state->get('list.ordering'));
-$listDirn  = $this->escape($this->state->get('list.direction'));
+$listOrder = $this->escape($this->state->get('list.ordering', 'a.name'));
+$listDirn  = $this->escape($this->state->get('list.direction', 'ASC'));
+$saveOrder = $listOrder == 'a.ordering';
 ?>
 
 <form action="<?php echo Route::_('index.php?option=com_sampleshop&view=products'); ?>" method="post" name="adminForm" id="adminForm">
@@ -30,30 +31,30 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
                     </div>
                 <?php else : ?>
                     <table class="table" id="productList">
-                        <caption id="captionTable" class="visually-hidden">
+                        <caption class="visually-hidden">
                             <?php echo Text::_('COM_SAMPLESHOP_PRODUCTS_TABLE_CAPTION'); ?>
                         </caption>
                         <thead>
-                        <tr>
-                            <th class="w-1 text-center">
-                                <?php echo HTMLHelper::_('grid.checkall'); ?>
-                            </th>
-                            <th scope="col">
-                                <?php echo HTMLHelper::_('searchtools.sort', 'COM_SAMPLESHOP_FIELD_PRODUCT_NAME', 'a.name', $listDirn, $listOrder); ?>
-                            </th>
-                            <th scope="col">
-                                <?php echo HTMLHelper::_('searchtools.sort', 'COM_SAMPLESHOP_FIELD_PRODUCT_PRICE', 'a.price', $listDirn, $listOrder); ?>
-                            </th>
-                            <th scope="col">
-                                <?php echo HTMLHelper::_('searchtools.sort', 'COM_SAMPLESHOP_FIELD_PRODUCT_CATEGORY', 'category_name', $listDirn, $listOrder); ?>
-                            </th>
-                            <th scope="col">
-                                <?php echo HTMLHelper::_('searchtools.sort', 'JSTATUS', 'a.published', $listDirn, $listOrder); ?>
-                            </th>
-                            <th scope="col">
-                                <?php echo HTMLHelper::_('searchtools.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
-                            </th>
-                        </tr>
+                            <tr>
+                                <td class="w-1 text-center">
+                                    <?php echo HTMLHelper::_('grid.checkall'); ?>
+                                </td>
+                                <th scope="col">
+                                    <?php echo HTMLHelper::_('searchtools.sort', 'JGLOBAL_TITLE', 'a.name', $listDirn, $listOrder); ?>
+                                </th>
+                                <th scope="col" class="w-10 d-none d-md-table-cell">
+                                    <?php echo HTMLHelper::_('searchtools.sort', 'COM_SAMPLESHOP_PRICE', 'a.price', $listDirn, $listOrder); ?>
+                                </th>
+                                <th scope="col" class="w-15 d-none d-md-table-cell">
+                                    <?php echo HTMLHelper::_('searchtools.sort', 'COM_SAMPLESHOP_CATEGORY', 'category_title', $listDirn, $listOrder); ?>
+                                </th>
+                                <th scope="col" class="w-10 d-none d-md-table-cell">
+                                    <?php echo HTMLHelper::_('searchtools.sort', 'JSTATUS', 'a.published', $listDirn, $listOrder); ?>
+                                </th>
+                                <th scope="col" class="w-5 d-none d-md-table-cell">
+                                    <?php echo HTMLHelper::_('searchtools.sort', 'JGRID_HEADING_ID', 'a.id', $listDirn, $listOrder); ?>
+                                </th>
+                            </tr>
                         </thead>
                         <tbody>
                         <?php foreach ($this->items as $i => $item) : ?>
@@ -66,16 +67,16 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
                                         <?php echo $this->escape($item->name); ?>
                                     </a>
                                 </td>
-                                <td>
-                                    <?php echo HTMLHelper::_('number.format', $item->price, 2); ?>
+                                <td class="d-none d-md-table-cell">
+                                    <?php echo number_format($item->price, 2); ?>
                                 </td>
-                                <td>
-                                    <?php echo $this->escape($item->category_name); ?>
+                                <td class="d-none d-md-table-cell">
+                                    <?php echo $this->escape($item->category_title); ?>
                                 </td>
-                                <td class="text-center">
-                                    <?php echo HTMLHelper::_('jgrid.published', $item->published, $i, 'products.'); ?>
+                                <td class="article-status">
+                                    <?php echo HTMLHelper::_('jgrid.published', $item->published, $i, 'products.', true); ?>
                                 </td>
-                                <td>
+                                <td class="d-none d-md-table-cell">
                                     <?php echo $item->id; ?>
                                 </td>
                             </tr>

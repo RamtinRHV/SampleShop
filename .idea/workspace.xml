@@ -4,7 +4,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="87defe0f-4569-45d0-a57d-0a512319fa21" name="Changes" comment="Shop_v1.1" />
+    <list default="true" id="87defe0f-4569-45d0-a57d-0a512319fa21" name="Changes" comment="Shop_v1.1">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/forms/category.xml" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/forms/category.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/forms/filter_products.xml" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/forms/filter_products.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/forms/product.xml" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/forms/product.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/language/en-GB/com_sampleshop.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/sampleshop.xml" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/sampleshop.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/services/provider.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/services/provider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Controller/CategoryController.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Controller/CategoryController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Controller/ProductController.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Controller/ProductController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Model/CategoriesModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Model/CategoriesModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Model/CategoryModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Model/CategoryModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Model/ProductModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Model/ProductModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Model/ProductsModel.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Model/ProductsModel.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Table/CategoryTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Table/CategoryTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Table/ProductTable.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/Table/ProductTable.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/View/Categories/HtmlView.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/View/Categories/HtmlView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/View/Products/HtmlView.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/src/View/Products/HtmlView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/tmpl/categories/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/tmpl/categories/default.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/administrator/components/com_sampleshop/tmpl/products/default.php" beforeDir="false" afterPath="$PROJECT_DIR$/administrator/components/com_sampleshop/tmpl/products/default.php" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,18 +37,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPEN",
-    "assignee": "RamtinRHV"
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;RamtinRHV&quot;
   }
-}]]></component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/RamtinRHV/SampleShop.git",
-    "accountId": "cc65673a-0889-4224-96f4-71e92c53c83a"
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/RamtinRHV/SampleShop.git&quot;,
+    &quot;accountId&quot;: &quot;cc65673a-0889-4224-96f4-71e92c53c83a&quot;
   }
-}]]></component>
+}</component>
+  <component name="JoomlaConfiguration" doNotAskAgain="true" />
+  <component name="PhpServers">
+    <servers>
+      <server host="sample.local" id="e775bfa4-d236-45df-a9c7-f757c39a0dcb" name="sample.local" />
+    </servers>
+  </component>
   <component name="PhpWorkspaceProjectConfiguration" interpreter_name="C:\xampp\php\php.exe" />
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 0
@@ -41,25 +68,40 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "shop__v1",
-    "last_opened_file_path": "C:/MyWork/SampleShop/administrator/components/com_sampleshop/src/Controller",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;PHPUnit.SampleShop.executor&quot;: &quot;Coverage&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;shop__v1&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/MyWork/SampleShop/administrator/components/com_sampleshop/src/Controller&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\MyWork\SampleShop\administrator\components\com_sampleshop\src\Controller" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\MyWork\SampleShop\administrator\language\en-GB" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="SampleShop" type="PHPUnitRunConfigurationType" factoryName="PHPUnit" temporary="true">
+      <TestRunner directory="$PROJECT_DIR$" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="PHPUnit.SampleShop" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -79,6 +121,12 @@
       <updated>1742126365547</updated>
       <workItem from="1742126366909" duration="3889000" />
       <workItem from="1742206246548" duration="7856000" />
+      <workItem from="1743691382173" duration="985000" />
+      <workItem from="1743695766333" duration="92000" />
+      <workItem from="1743700442914" duration="674000" />
+      <workItem from="1743702083389" duration="4395000" />
+      <workItem from="1743837620699" duration="3667000" />
+      <workItem from="1743857355640" duration="2073000" />
     </task>
     <task id="LOCAL-00001" summary="Shop_v1">
       <option name="closed" value="true" />
@@ -96,7 +144,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742212903397</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Shop_v1.1">
+      <option name="closed" value="true" />
+      <created>1743691557898</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1743691557900</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -106,5 +162,29 @@
     <MESSAGE value="Shop_v1" />
     <MESSAGE value="Shop_v1.1" />
     <option name="LAST_COMMIT_MESSAGE" value="Shop_v1.1" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/administrator/components/com_sampleshop/tmpl/category/edit.php</url>
+          <line>12</line>
+          <option name="timeStamp" value="3" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/administrator/components/com_sampleshop/tmpl/categories/edit.php</url>
+          <line>16</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/administrator/components/com_sampleshop/tmpl/products/edit.php</url>
+          <line>16</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/SampleShop@SampleShop.xml" NAME="SampleShop Coverage Results" MODIFIED="1743695805195" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="PhpCoverage" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

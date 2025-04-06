@@ -12,21 +12,57 @@ use Joomla\CMS\Toolbar\ToolbarHelper;
 
 class HtmlView extends BaseHtmlView
 {
+    /**
+     * An array of items
+     *
+     * @var  array
+     */
     protected $items;
-    protected $pagination;
-    protected $state;
-    protected $filterForm;
-    protected $activeFilters;
 
+    /**
+     * The pagination object
+     *
+     * @var  \Joomla\CMS\Pagination\Pagination
+     */
+    protected $pagination;
+
+    /**
+     * The model state
+     *
+     * @var  \Joomla\CMS\Object\CMSObject
+     */
+    protected $state;
+
+    /**
+     * Form object for search filters
+     *
+     * @var  \Joomla\CMS\Form\Form
+     */
+    public $filterForm;
+
+    /**
+     * The active search filters
+     *
+     * @var  array
+     */
+    public $activeFilters;
+
+    /**
+     * Display the view
+     *
+     * @param   string  $tpl  The name of the template file to parse
+     *
+     * @return  void
+     */
     public function display($tpl = null)
     {
         $this->items         = $this->get('Items');
         $this->pagination    = $this->get('Pagination');
-        $this->state        = $this->get('State');
+        $this->state         = $this->get('State');
         $this->filterForm    = $this->get('FilterForm');
         $this->activeFilters = $this->get('ActiveFilters');
 
-        // Check for errors.
+        // Check for errors
         if (count($errors = $this->get('Errors')))
         {
             throw new GenericDataException(implode("\n", $errors), 500);
@@ -37,34 +73,50 @@ class HtmlView extends BaseHtmlView
         return parent::display($tpl);
     }
 
+    /**
+     * Add the page title and toolbar
+     *
+     * @return  void
+     */
     protected function addToolbar()
     {
-        $canDo = Factory::getApplication()->getIdentity()->authorise('core.create', 'com_sampleshop');
+        // Get the toolbar object instance
+        $toolbar = Toolbar::getInstance('toolbar');
 
-        ToolbarHelper::title(Text::_('COM_SAMPLESHOP_PRODUCTS_TITLE'), 'stack');
+        ToolbarHelper::title(Text::_('COM_SAMPLESHOP_PRODUCTS_TITLE'), 'cube products');
 
-        if ($canDo)
+        // Get the user object
+        $user = Factory::getApplication()->getIdentity();
+
+        // Check if user can create
+        if ($user->authorise('core.create', 'com_sampleshop'))
         {
-            ToolbarHelper::addNew('product.add');
+            ToolbarHelper::addNew('product.edit');
         }
 
-        if ($canDo)
+        // Check if user can edit
+        if ($user->authorise('core.edit', 'com_sampleshop') || $user->authorise('core.edit.own', 'com_sampleshop'))
         {
             ToolbarHelper::editList('product.edit');
         }
 
-        if ($canDo)
+        // Check if user can change state
+        if ($user->authorise('core.edit.state', 'com_sampleshop'))
         {
             ToolbarHelper::publish('products.publish', 'JTOOLBAR_PUBLISH', true);
             ToolbarHelper::unpublish('products.unpublish', 'JTOOLBAR_UNPUBLISH', true);
+            ToolbarHelper::archiveList('products.archive');
+            ToolbarHelper::checkin('products.checkin');
         }
 
-        if ($canDo)
+        // Check if user can delete
+        if ($user->authorise('core.delete', 'com_sampleshop'))
         {
-            ToolbarHelper::deleteList('', 'products.delete', 'JTOOLBAR_DELETE');
+            ToolbarHelper::deleteList('JGLOBAL_CONFIRM_DELETE', 'products.delete', 'JTOOLBAR_DELETE');
         }
 
-        if ($canDo)
+        // Check if user can admin
+        if ($user->authorise('core.admin', 'com_sampleshop'))
         {
             ToolbarHelper::preferences('com_sampleshop');
         }

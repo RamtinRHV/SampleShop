@@ -27,6 +27,11 @@
             <filename>access.xml</filename>
             <filename>config.xml</filename>
         </files>
+
+        <languages folder="administrator">
+            <language tag="en-GB">language/en-GB/com_sampleshop.ini</language>
+            <language tag="en-GB">language/en-GB/com_sampleshop.sys.ini</language>
+        </languages>
     </administration>
 
     <install>

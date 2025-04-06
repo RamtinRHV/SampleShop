@@ -21,22 +21,22 @@ class ProductsModel extends ListModel
      *
      * @param   array  $config  An optional associative array of configuration settings.
      */
-    public function __construct($config = [])
+    public function __construct($config = array())
     {
         if (empty($config['filter_fields']))
         {
-            $config['filter_fields'] = [
+            $config['filter_fields'] = array(
                 'id', 'a.id',
                 'name', 'a.name',
                 'alias', 'a.alias',
-                'catid', 'a.catid',
-                'price', 'a.price',
-                'featured', 'a.featured',
                 'published', 'a.published',
-                'created', 'a.created',
+                'category_id', 'a.category_id',
+                'price', 'a.price',
                 'ordering', 'a.ordering',
-                'category_title'
-            ];
+                'created', 'a.created',
+                'created_by', 'a.created_by',
+                'category_title', 'c.name'
+            );
         }
 
         parent::__construct($config);
@@ -50,7 +50,7 @@ class ProductsModel extends ListModel
      *
      * @return  void
      */
-    protected function populateState($ordering = 'a.name', $direction = 'ASC')
+    protected function populateState($ordering = 'a.name', $direction = 'asc')
     {
         $search = $this->getUserStateFromRequest($this->context . '.filter.search', 'filter_search');
         $this->setState('filter.search', $search);
@@ -74,7 +74,7 @@ class ProductsModel extends ListModel
      */
     protected function getStoreId($id = '')
     {
-        // Compile the store id.
+        // Compile the store id
         $id .= ':' . $this->getState('filter.search');
         $id .= ':' . $this->getState('filter.published');
         $id .= ':' . $this->getState('filter.category_id');
@@ -92,36 +92,31 @@ class ProductsModel extends ListModel
         $db = $this->getDbo();
         $query = $db->getQuery(true);
         
-        // Select required fields
         $query->select(
             $db->quoteName(
                 [
                     'a.id',
                     'a.name',
                     'a.alias',
-                    'a.price',
-                    'a.description',
-                    'a.category_id',
                     'a.published',
+                    'a.category_id',
+                    'a.price',
                     'a.ordering',
                     'a.created',
                     'a.created_by',
-                    'a.hits',
                     'c.name',
                 ],
                 [
                     'id',
                     'name',
                     'alias',
-                    'price',
-                    'description',
-                    'category_id',
                     'published',
+                    'category_id',
+                    'price',
                     'ordering',
                     'created',
                     'created_by',
-                    'hits',
-                    'category_name'
+                    'category_title'
                 ]
             )
         );
@@ -130,28 +125,29 @@ class ProductsModel extends ListModel
             ->join('LEFT', $db->quoteName('#__sampleshop_categories', 'c'), 
                 $db->quoteName('c.id') . ' = ' . $db->quoteName('a.category_id'));
 
-        // Filter by search
-        $search = $this->getState('filter.search');
-        if (!empty($search)) {
-            $search = $db->quote('%' . str_replace(' ', '%', $db->escape(trim($search), true) . '%'));
-            $query->where('(a.name LIKE ' . $search . ' OR a.description LIKE ' . $search . ')');
+        // Filter by published state
+        $published = $this->getState('filter.published');
+        if (is_numeric($published))
+        {
+            $query->where($db->quoteName('a.published') . ' = :published')
+                ->bind(':published', $published, ParameterType::INTEGER);
         }
 
         // Filter by category
         $categoryId = $this->getState('filter.category_id');
-        if (is_numeric($categoryId)) {
-            $query->where($db->quoteName('a.category_id') . ' = ' . (int) $categoryId);
+        if (is_numeric($categoryId))
+        {
+            $query->where($db->quoteName('a.category_id') . ' = :categoryId')
+                ->bind(':categoryId', $categoryId, ParameterType::INTEGER);
         }
 
-        // Filter by price range
-        $priceFrom = $this->getState('filter.price_from');
-        $priceTo = $this->getState('filter.price_to');
-        
-        if (is_numeric($priceFrom)) {
-            $query->where($db->quoteName('a.price') . ' >= ' . (float) $priceFrom);
-        }
-        if (is_numeric($priceTo)) {
-            $query->where($db->quoteName('a.price') . ' <= ' . (float) $priceTo);
+        // Filter by search
+        $search = $this->getState('filter.search');
+        if (!empty($search))
+        {
+            $search = '%' . str_replace(' ', '%', trim($search)) . '%';
+            $query->where($db->quoteName('a.name') . ' LIKE :search')
+                ->bind(':search', $search, ParameterType::STRING);
         }
 
         // Add the list ordering clause
